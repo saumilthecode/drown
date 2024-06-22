@@ -3,7 +3,7 @@ import UserNotifications
 import ActivityKit
 
 struct ContentView: View {
-    @State private var interval: Double = 30 // Default interval in seconds
+    @State private var interval: Double = 10 // Default interval in seconds
     @State private var isStarted: Bool = false
     @State private var notificationCount: Int = 10 // Number of notifications to schedule in advance
     @State private var permissionGranted: Bool = false // Track permission status
@@ -47,14 +47,23 @@ struct ContentView: View {
                 .font(.headline)
                 .padding(.bottom, 10)
             
-            Slider(value: $interval, in: 10...300, step: 10)
+            Slider(value: $interval, in: 2...100, step: 1)
                 .padding(.horizontal, 40)
             
             Text("\(Int(interval)) seconds")
                 .font(.subheadline)
                 .foregroundColor(.gray)
-                .padding(.bottom, 40)
+                .padding(.bottom, 10)
             
+            if interval > 30 {
+                Text("Are you sure? It only takes 30 seconds for someone to drown...")
+                    .font(.subheadline)
+                    .foregroundColor(.red)
+                    .transition(.opacity)
+                    .animation(.easeInOut, value: interval)
+            }
+            
+            Spacer()
         }
         .onAppear {
             requestPermission(completion: nil)

@@ -141,7 +141,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D2FE3F7E2C27138200227885 /* Build configuration list for PBXProject "Drowning" */;
+			buildConfigurationList = D2FE3F7E2C27138200227885 /* Build configuration list for PBXProject "SwimTrack" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -321,6 +321,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Drowning/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SwimTrack;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -354,6 +355,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Drowning/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SwimTrack;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -377,7 +379,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D2FE3F7E2C27138200227885 /* Build configuration list for PBXProject "Drowning" */ = {
+		D2FE3F7E2C27138200227885 /* Build configuration list for PBXProject "SwimTrack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D2FE3F8F2C27138300227885 /* Debug */,
