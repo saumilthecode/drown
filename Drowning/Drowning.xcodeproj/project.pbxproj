@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D21F460D2C271D3600BF37B4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21F460C2C271D3100BF37B4 /* MainView.swift */; };
+		D21F460F2C271D6500BF37B4 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21F460E2C271D5E00BF37B4 /* ScheduleView.swift */; };
+		D21F46112C271D7200BF37B4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21F46102C271D6E00BF37B4 /* SettingsView.swift */; };
 		D2FE3F872C27138200227885 /* DrowningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FE3F862C27138200227885 /* DrowningApp.swift */; };
 		D2FE3F892C27138200227885 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FE3F882C27138200227885 /* ContentView.swift */; };
 		D2FE3F8B2C27138300227885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2FE3F8A2C27138300227885 /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D21F460C2C271D3100BF37B4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D21F460E2C271D5E00BF37B4 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		D21F46102C271D6E00BF37B4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D2FE3F832C27138200227885 /* Drowning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drowning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2FE3F862C27138200227885 /* DrowningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrowningApp.swift; sourceTree = "<group>"; };
 		D2FE3F882C27138200227885 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +60,9 @@
 			children = (
 				D2FE3F942C2713B700227885 /* Drowning.entitlements */,
 				D2FE3F862C27138200227885 /* DrowningApp.swift */,
+				D21F460E2C271D5E00BF37B4 /* ScheduleView.swift */,
+				D21F46102C271D6E00BF37B4 /* SettingsView.swift */,
+				D21F460C2C271D3100BF37B4 /* MainView.swift */,
 				D2FE3F882C27138200227885 /* ContentView.swift */,
 				D2FE3F8A2C27138300227885 /* Assets.xcassets */,
 				D2FE3F8C2C27138300227885 /* Preview Content */,
@@ -139,7 +148,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D21F46112C271D7200BF37B4 /* SettingsView.swift in Sources */,
 				D2FE3F892C27138200227885 /* ContentView.swift in Sources */,
+				D21F460F2C271D6500BF37B4 /* ScheduleView.swift in Sources */,
+				D21F460D2C271D3600BF37B4 /* MainView.swift in Sources */,
 				D2FE3F872C27138200227885 /* DrowningApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,12 +295,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sg.tk.Drowning;
+				PRODUCT_BUNDLE_IDENTIFIER = saumil.com.drowning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -313,12 +326,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sg.tk.Drowning;
+				PRODUCT_BUNDLE_IDENTIFIER = saumil.com.drowning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
