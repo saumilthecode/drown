@@ -8,7 +8,7 @@ struct ContentView: View {
     @State private var notificationCount: Int = 10 // Number of notifications to schedule in advance
     @State private var permissionGranted: Bool = false // Track permission status
     @State private var activities: [Activity<NotificationAttributes>] = []
-
+    
     var body: some View {
         VStack {
             Spacer()
@@ -101,8 +101,8 @@ struct ContentView: View {
     }
     
     func startLiveActivity(interval: Double, index: Int) {
-        let attributes = NotificationAttributes(interval: interval)
-        let initialContentState = NotificationAttributes.ContentState(interval: interval, remainingTime: interval * Double(index))
+        let attributes = NotificationAttributes(interval: Int(interval), remainingTime: interval * Double(index))
+        let initialContentState = NotificationAttributes.ContentState(remainingTime: interval * Double(index))
         do {
             let activity = try Activity<NotificationAttributes>.request(
                 attributes: attributes,
@@ -139,7 +139,7 @@ struct ContentView_Previews: PreviewProvider {
 extension Color {
     init(hex: String) {
         let scanner = Scanner(string: hex)
-        scanner.scanLocation = 0
+        scanner.currentIndex = hex.startIndex
         
         var rgbValue: UInt64 = 0
         scanner.scanHexInt64(&rgbValue)

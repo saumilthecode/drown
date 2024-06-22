@@ -11,10 +11,10 @@
 		D21F460F2C271D6500BF37B4 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21F460E2C271D5E00BF37B4 /* ScheduleView.swift */; };
 		D21F46112C271D7200BF37B4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21F46102C271D6E00BF37B4 /* SettingsView.swift */; };
 		D21F46152C27258A00BF37B4 /* LiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21F46142C27258800BF37B4 /* LiveActivityView.swift */; };
-		D21F461A2C2725EC00BF37B4 /* NotificationAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21F46192C2725E800BF37B4 /* NotificationAttributes.swift */; };
 		D21F461C2C27277F00BF37B4 /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F46172C2725CC00BF37B4 /* ActivityKit.framework */; };
 		D27120F82C27297C001A57CA /* GroupActivities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27120F72C27297C001A57CA /* GroupActivities.framework */; };
 		D27120FA2C272981001A57CA /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27120F92C272981001A57CA /* DeviceActivity.framework */; };
+		D27120FC2C2735DB001A57CA /* DynamicIslandLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27120FB2C2735DB001A57CA /* DynamicIslandLiveActivity.swift */; };
 		D2FE3F872C27138200227885 /* DrowningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FE3F862C27138200227885 /* DrowningApp.swift */; };
 		D2FE3F892C27138200227885 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FE3F882C27138200227885 /* ContentView.swift */; };
 		D2FE3F8B2C27138300227885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2FE3F8A2C27138300227885 /* Assets.xcassets */; };
@@ -27,10 +27,10 @@
 		D21F46102C271D6E00BF37B4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D21F46142C27258800BF37B4 /* LiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityView.swift; sourceTree = "<group>"; };
 		D21F46172C2725CC00BF37B4 /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActivityKit.framework; path = System/Library/Frameworks/ActivityKit.framework; sourceTree = SDKROOT; };
-		D21F46192C2725E800BF37B4 /* NotificationAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAttributes.swift; sourceTree = "<group>"; };
 		D21F461B2C27265900BF37B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D27120F72C27297C001A57CA /* GroupActivities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GroupActivities.framework; path = System/Library/Frameworks/GroupActivities.framework; sourceTree = SDKROOT; };
 		D27120F92C272981001A57CA /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
+		D27120FB2C2735DB001A57CA /* DynamicIslandLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicIslandLiveActivity.swift; sourceTree = "<group>"; };
 		D2FE3F832C27138200227885 /* Drowning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drowning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2FE3F862C27138200227885 /* DrowningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrowningApp.swift; sourceTree = "<group>"; };
 		D2FE3F882C27138200227885 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 				D21F460C2C271D3100BF37B4 /* MainView.swift */,
 				D2FE3F882C27138200227885 /* ContentView.swift */,
 				D21F46142C27258800BF37B4 /* LiveActivityView.swift */,
-				D21F46192C2725E800BF37B4 /* NotificationAttributes.swift */,
+				D27120FB2C2735DB001A57CA /* DynamicIslandLiveActivity.swift */,
 				D2FE3F8A2C27138300227885 /* Assets.xcassets */,
 				D2FE3F8C2C27138300227885 /* Preview Content */,
 			);
@@ -180,9 +180,9 @@
 				D2FE3F892C27138200227885 /* ContentView.swift in Sources */,
 				D21F460F2C271D6500BF37B4 /* ScheduleView.swift in Sources */,
 				D21F460D2C271D3600BF37B4 /* MainView.swift in Sources */,
-				D21F461A2C2725EC00BF37B4 /* NotificationAttributes.swift in Sources */,
 				D2FE3F872C27138200227885 /* DrowningApp.swift in Sources */,
 				D21F46152C27258A00BF37B4 /* LiveActivityView.swift in Sources */,
+				D27120FC2C2735DB001A57CA /* DynamicIslandLiveActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
