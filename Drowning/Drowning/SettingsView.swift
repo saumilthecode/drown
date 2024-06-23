@@ -10,8 +10,6 @@ import SwiftUI
 struct SettingsView: View {
     var body: some View {
         VStack {
-            
-            
             Spacer()
             Divider()
                 .frame(height: 2)
@@ -32,17 +30,15 @@ struct SettingsView: View {
                 .frame(height: 2)
                 .overlay(Color(.blue))
             Spacer()
-            
-            
-            
         }
         .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
+        .navigationBarTitle("Settings", displayMode: .inline)
     }
 }
 
 struct SettingsButton: View {
     var title: String
-    
+
     var body: some View {
         Button(action: {
             // Handle button action

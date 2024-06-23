@@ -1,9 +1,10 @@
 import SwiftUI
 
+
 struct ScheduleView: View {
     @State private var selectedDate = Date()
     @State private var endTime = Date()
-    
+
     var body: some View {
         VStack {
             // Month and calendar view
@@ -18,12 +19,12 @@ struct ScheduleView: View {
                 .padding(.vertical, 20)
             }
             .padding(.horizontal, 20)
-            
+
             // End time
             VStack(alignment: .leading, spacing: 10) {
                 Text("Ends")
                     .font(.headline)
-                
+
                 DatePicker(
                     "",
                     selection: $endTime,
@@ -37,9 +38,9 @@ struct ScheduleView: View {
             }
             .padding(.horizontal, 20)
             .padding(.top, 20)
-            
+
             Spacer()
-            
+
             // Buttons
             HStack {
                 Button(action: {}) {
@@ -50,7 +51,7 @@ struct ScheduleView: View {
                         .background(Color(.systemGray5))
                         .cornerRadius(10)
                 }
-                
+
                 Button(action: {}) {
                     Text("Records")
                         .font(.headline)
@@ -62,7 +63,7 @@ struct ScheduleView: View {
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 10)
-            
+
             Button(action: {}) {
                 Text("Insights & Progress")
                     .font(.headline)
@@ -75,11 +76,5 @@ struct ScheduleView: View {
             .padding(.bottom, 20)
         }
         .background(Color(.systemBackground))
-    }
-}
-
-struct ScheduleView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScheduleView()
     }
 }

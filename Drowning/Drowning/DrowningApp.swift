@@ -11,7 +11,7 @@ import SwiftUI
 struct DrowningApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            ContentView()
         }
     }
 }
