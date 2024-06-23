@@ -32,14 +32,14 @@ struct ContentView: View {
                 }) {
                     ZStack {
                         Circle()
-                            .fill(isStarted ? Color.red : Color(hex: "05A0BF"))
+                            .fill(isStarted ? Color.red : Color(hex: "A0E7E5"))
                             .frame(width: 150, height: 150)
-                            .shadow(color: isStarted ? Color.red.opacity(0.5) : Color(hex: "05A0BF").opacity(0.5), radius: 10, x: 0, y: 0)
+                            .shadow(color: isStarted ? Color.red.opacity(0.5) : Color(hex: "A0E7E5").opacity(0.5), radius: 10, x: 0, y: 0)
                         
                         Image(systemName: "power")
                             .resizable()
                             .scaledToFit()
-                            .foregroundColor(.white)
+                            .foregroundColor(.indigo)
                             .frame(width: 50, height: 50)
                     }
                 }
@@ -94,7 +94,10 @@ struct ContentView: View {
             .onAppear {
                 requestPermission(completion: nil)
             }
+            .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
+
         }
+
     }
 
     func requestPermission(completion: (() -> Void)?) {
@@ -165,9 +168,6 @@ struct ContentView: View {
         activities.removeAll()
     }
 }
-
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

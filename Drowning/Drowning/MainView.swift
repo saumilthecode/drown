@@ -20,13 +20,7 @@ struct MainView: View {
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("Schedule")
-                }
-            
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gearshape.fill")
-                    Text("Settings")
-                }
+                }   
         }
     }
 }
