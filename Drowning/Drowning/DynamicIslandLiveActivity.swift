@@ -2,20 +2,6 @@ import SwiftUI
 import ActivityKit
 import WidgetKit
 
-struct NotificationAttributes: ActivityAttributes {
-    public struct ContentState: Codable, Hashable {
-        var remainingTime: Double
-    }
-    
-    var contentState: ContentState
-    var interval: Int
-    
-    init(interval: Int, remainingTime: Double) {
-        self.interval = interval
-        self.contentState = ContentState(remainingTime: remainingTime)
-    }
-}
-
 
 
 

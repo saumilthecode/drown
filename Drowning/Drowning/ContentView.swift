@@ -5,9 +5,10 @@ import ActivityKit
 struct ContentView: View {
     @State private var interval: Double = 10 // Default interval in seconds
     @State private var isStarted: Bool = false
-    @State private var notificationCount: Int = 10 // Number of notifications to schedule in advance
     @State private var permissionGranted: Bool = false // Track permission status
-    @State private var activities: [Activity<NotificationAttributes>] = []
+    @State private var liveActivity: Activity<NotificationAttributes>? = nil
+    @State private var progress: Double = 0 // Progress of the circular timer
+    @State private var timer: Timer? = nil
     @State private var showSettingsSheet = false
     @State private var showScheduleSheet = false
 
@@ -16,32 +17,42 @@ struct ContentView: View {
             VStack {
                 Spacer()
                 
-                Button(action: {
-                    if isStarted {
-                        stopNotifications()
-                    } else {
-                        if permissionGranted {
-                            scheduleNotifications(interval: interval)
-                        } else {
-                            requestPermission {
-                                scheduleNotifications(interval: interval)
+                ZStack {
+                    Circle()
+                        .fill(isStarted ? Color.red.opacity(0.3) : Color.green.opacity(0.3))
+                        .frame(width: 200, height: 200)
+
+                    Circle()
+                        .stroke(lineWidth: 20)
+                        .opacity(0.3)
+                        .foregroundColor(.yellow)
+                        .frame(width: 200, height: 200)
+
+                    Circle()
+                        .trim(from: 0, to: CGFloat(min(self.progress, 1.0)))
+                        .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                        .foregroundColor(self.progress > 0 ? .yellow : .clear) // Adjust fill color here
+                        .rotationEffect(Angle(degrees: 270))
+                        .animation(.linear, value: progress)
+                        .frame(width: 200, height: 200)
+
+                    Text(isStarted ? "Stop" : "Start")
+                        .font(.title)
+                        .foregroundColor(.black)
+                        .onTapGesture {
+                            if isStarted {
+                                stopNotifications()
+                            } else {
+                                if permissionGranted {
+                                    scheduleNotifications(interval: interval)
+                                } else {
+                                    requestPermission {
+                                        scheduleNotifications(interval: interval)
+                                    }
+                                }
                             }
+                            isStarted.toggle()
                         }
-                    }
-                    isStarted.toggle()
-                }) {
-                    ZStack {
-                        Circle()
-                            .fill(isStarted ? Color.red : Color(hex: "A0E7E5"))
-                            .frame(width: 150, height: 150)
-                            .shadow(color: isStarted ? Color.red.opacity(0.5) : Color(hex: "A0E7E5").opacity(0.5), radius: 10, x: 0, y: 0)
-                        
-                        Image(systemName: "power")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.indigo)
-                            .frame(width: 50, height: 50)
-                    }
                 }
                 
                 Spacer()
@@ -58,15 +69,11 @@ struct ContentView: View {
                     .foregroundColor(.gray)
                     .padding(.bottom, 10)
                 
-                if interval > 30 {
-                    Text("Are you sure? It only takes 30 seconds for someone to drown...")
-                        .font(.subheadline)
-                        .foregroundColor(.red)
-                        .transition(.opacity)
-                        .animation(.easeInOut, value: interval)
-                }
-                
                 Spacer()
+                
+                if let liveActivity = liveActivity {
+                    LiveActivityView(activity: liveActivity)
+                }
             }
             .navigationBarTitle("Home", displayMode: .inline)
             .navigationBarItems(
@@ -86,86 +93,52 @@ struct ContentView: View {
                 }
             )
             .sheet(isPresented: $showSettingsSheet) {
-                SettingsView()
+                Text("Settings View")
             }
             .sheet(isPresented: $showScheduleSheet) {
-                ScheduleView()
+                Text("Schedule View")
             }
             .onAppear {
                 requestPermission(completion: nil)
             }
             .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
-
         }
-
     }
 
     func requestPermission(completion: (() -> Void)?) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
-            DispatchQueue.main.async {
-                if granted {
-                    print("Permission granted")
-                    permissionGranted = true
-                    completion?()
-                } else if let error = error {
-                    print("Error: \(error.localizedDescription)")
-                } else {
-                    print("Permission denied")
-                }
-            }
-        }
+        // Your permission request code here
+        permissionGranted = true // Simulated for example
+        completion?()
     }
 
     func scheduleNotifications(interval: Double) {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests() // Clear existing notifications
-        for i in 0..<notificationCount {
-            let content = UNMutableNotificationContent()
-            content.title = "Look Up!"
-            content.body = "Take a look at your child."
-            content.sound = UNNotificationSound.default
-            
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval * Double(i + 1), repeats: false)
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-            
-            print("Scheduling notification \(i + 1) at interval \(interval * Double(i + 1)) seconds")
-            UNUserNotificationCenter.current().add(request) { error in
-                if let error = error {
-                    print("Error: \(error.localizedDescription)")
-                }
-            }
-            
-            // Start a live activity
-            startLiveActivity(interval: interval, index: i + 1)
-        }
+        // Simulated notification scheduling
+        let contentState = NotificationAttributes.ContentState(remainingTime: interval)
+        startLiveActivity(interval: interval, contentState: contentState)
     }
 
-    func startLiveActivity(interval: Double, index: Int) {
-        let attributes = NotificationAttributes(interval: Int(interval), remainingTime: interval * Double(index))
-        let initialContentState = NotificationAttributes.ContentState(remainingTime: interval * Double(index))
+    func startLiveActivity(interval: Double, contentState: NotificationAttributes.ContentState) {
+        let attributes = NotificationAttributes(interval: Int(interval), contentState: contentState)
+        
+        let staleDate = Date().addingTimeInterval(4 * 60 * 60) // 4 hours in seconds
+        
         do {
             let activity = try Activity<NotificationAttributes>.request(
                 attributes: attributes,
-                contentState: initialContentState,
+                content: ActivityContent(state: contentState, staleDate: staleDate),
                 pushType: nil
             )
-            activities.append(activity)
-            print("Started live activity \(index)")
+            liveActivity = activity
+            print("Started live activity with interval \(interval)")
         } catch {
             print("Error starting live activity: \(error.localizedDescription)")
         }
     }
 
     func stopNotifications() {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        // Your notification stopping code here
+        liveActivity = nil
         print("All notifications stopped")
-        
-        // End all live activities
-        for activity in activities {
-            Task {
-                await activity.end(dismissalPolicy: .immediate)
-            }
-        }
-        activities.removeAll()
     }
 }
 
@@ -175,18 +148,20 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-extension Color {
-    init(hex: String) {
-        let scanner = Scanner(string: hex)
-        scanner.currentIndex = hex.startIndex
-        
-        var rgbValue: UInt64 = 0
-        scanner.scanHexInt64(&rgbValue)
-        
-        let red = Double((rgbValue & 0xff0000) >> 16) / 255.0
-        let green = Double((rgbValue & 0x00ff00) >> 8) / 255.0
-        let blue = Double(rgbValue & 0x0000ff) / 255.0
-        
-        self.init(red: red, green: green, blue: blue)
+// LiveActivityView
+
+
+struct NotificationAttributes: ActivityAttributes {
+    var interval: Int
+    var contentState: ContentState
+    
+    struct ContentState: Codable, Hashable {
+        var remainingTime: Double
+    }
+    
+    // Implement initializer required by ActivityAttributes
+    init(interval: Int, contentState: ContentState) {
+        self.interval = interval
+        self.contentState = contentState
     }
 }

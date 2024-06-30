@@ -17,3 +17,4 @@ struct LiveActivityView: View {
         .padding()
     }
 }
+
