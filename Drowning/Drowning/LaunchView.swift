@@ -1,0 +1,49 @@
+//
+//  LaunchView.swift
+//  Drowning
+//
+//  Created by Saumil Anand on 2/7/24.
+//
+
+import SwiftUI
+
+struct LaunchView: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            
+            Text("Welcome to SwimTrack")
+                .font(.title)
+            
+            Spacer()
+            
+            Image(systemName: "figure.pool.swim")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.blue)
+                .font(.largeTitle)
+            
+            Spacer()
+            
+            Text("We made this app to help protect YOUR children from ever being hurt due to distractions.")
+                .font(.subheadline)
+                .padding()
+                .multilineTextAlignment(.center)
+            
+            Text("Are you an adult? Swipe right to learn more!")
+                .font(.subheadline)
+            
+            Spacer()
+            Spacer()
+        }
+        .padding()
+        .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
+        .edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct LaunchView_Previews: PreviewProvider {
+    static var previews: some View {
+        LaunchView()
+    }
+}
