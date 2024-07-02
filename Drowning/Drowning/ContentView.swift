@@ -11,6 +11,8 @@ struct ContentView: View {
     @State private var timer: Timer? = nil
     @State private var showSettingsSheet = false
     @State private var showScheduleSheet = false
+    @State private var startTime: Date? = nil // Start time of the interval
+    @State private var notificationCount: Int = 0 // Track number of notifications
 
     var body: some View {
         NavigationView {
@@ -31,7 +33,7 @@ struct ContentView: View {
                     Circle()
                         .trim(from: 0, to: CGFloat(min(self.progress, 1.0)))
                         .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
-                        .foregroundColor(self.progress > 0 ? .yellow : .clear) // Adjust fill color here
+                        .foregroundColor(self.progress > 0 ? .yellow : .clear)
                         .rotationEffect(Angle(degrees: 270))
                         .animation(.linear, value: progress)
                         .frame(width: 200, height: 200)
@@ -106,15 +108,39 @@ struct ContentView: View {
     }
 
     func requestPermission(completion: (() -> Void)?) {
-        // Your permission request code here
-        permissionGranted = true // Simulated for example
-        completion?()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
+            DispatchQueue.main.async {
+                permissionGranted = granted
+                completion?()
+            }
+        }
     }
 
     func scheduleNotifications(interval: Double) {
-        // Simulated notification scheduling
+        notificationCount = 0
         let contentState = NotificationAttributes.ContentState(remainingTime: interval)
         startLiveActivity(interval: interval, contentState: contentState)
+        
+        for i in 1...10 {
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval * Double(i), repeats: false)
+            let content = UNMutableNotificationContent()
+            content.title = "Look up"
+            content.body = "Look at your child"
+            content.sound = UNNotificationSound.default
+
+            let request = UNNotificationRequest(identifier: "Notification_\(i)", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("Error adding notification \(i): \(error.localizedDescription)")
+                }
+            }
+        }
+        
+        // Start the timer
+        startTime = Date()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            updateProgress()
+        }
     }
 
     func startLiveActivity(interval: Double, contentState: NotificationAttributes.ContentState) {
@@ -130,15 +156,38 @@ struct ContentView: View {
             )
             liveActivity = activity
             print("Started live activity with interval \(interval)")
+            
         } catch {
             print("Error starting live activity: \(error.localizedDescription)")
         }
     }
 
     func stopNotifications() {
-        // Your notification stopping code here
+        // Stop all scheduled notifications
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         liveActivity = nil
+        timer?.invalidate()
+        timer = nil
+        progress = 0
+        startTime = nil
+        notificationCount = 0
         print("All notifications stopped")
+    }
+
+    func updateProgress() {
+        guard let startTime = startTime else { return }
+        let elapsedTime = Date().timeIntervalSince(startTime)
+        progress = (elapsedTime.truncatingRemainder(dividingBy: interval)) / interval
+        
+        if progress >= 1.0 {
+            notificationCount += 1
+            if notificationCount >= 10 {
+                stopNotifications()
+                progress = 0
+                return
+            }
+            self.startTime = Date() // Reset the start time for the next interval
+        }
     }
 }
 
@@ -149,7 +198,6 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 // LiveActivityView
-
 
 struct NotificationAttributes: ActivityAttributes {
     var interval: Int
