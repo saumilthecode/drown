@@ -14,25 +14,27 @@ struct LaunchView: View {
             
             Text("Welcome to SwimTrack")
                 .font(.title)
-            
+                .foregroundColor(.cyan)
             Spacer()
-            
+                
             Image(systemName: "figure.pool.swim")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(.blue)
+                .foregroundColor(.cyan)
                 .font(.largeTitle)
-            
+                
             Spacer()
-            
+                
             Text("We made this app to help protect YOUR children from ever being hurt due to distractions.")
                 .font(.subheadline)
                 .padding()
                 .multilineTextAlignment(.center)
-            
+                .foregroundColor(.cyan)
+                
             Text("Are you an adult? Swipe right to learn more!")
                 .font(.subheadline)
-            
+                .foregroundColor(.cyan)
+                
             Spacer()
             Spacer()
         }

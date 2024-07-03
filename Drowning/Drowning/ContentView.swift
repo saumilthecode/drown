@@ -11,9 +11,10 @@ struct ContentView: View {
     @State private var timer: Timer? = nil
     @State private var showSettingsSheet = false
     @State private var showScheduleSheet = false
+    @State private var showOnboardingSheet = false
     @State private var startTime: Date? = nil // Start time of the interval
     @State private var notificationCount: Int = 0 // Track number of notifications
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -23,13 +24,13 @@ struct ContentView: View {
                     Circle()
                         .fill(isStarted ? Color.red.opacity(0.3) : Color.green.opacity(0.3))
                         .frame(width: 200, height: 200)
-
+                    
                     Circle()
                         .stroke(lineWidth: 20)
                         .opacity(0.3)
                         .foregroundColor(.yellow)
                         .frame(width: 200, height: 200)
-
+                    
                     Circle()
                         .trim(from: 0, to: CGFloat(min(self.progress, 1.0)))
                         .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
@@ -37,7 +38,7 @@ struct ContentView: View {
                         .rotationEffect(Angle(degrees: 270))
                         .animation(.linear, value: progress)
                         .frame(width: 200, height: 200)
-
+                    
                     Text(isStarted ? "Stop" : "Start")
                         .font(.title)
                         .foregroundColor(.black)
@@ -95,18 +96,22 @@ struct ContentView: View {
                 }
             )
             .sheet(isPresented: $showSettingsSheet) {
-                Text("Settings View")
+                SettingsView()
             }
             .sheet(isPresented: $showScheduleSheet) {
-                Text("Schedule View")
+                ScheduleView()
+            }
+            .sheet(isPresented: $showOnboardingSheet) {
+                OnboardingView()
             }
             .onAppear {
                 requestPermission(completion: nil)
+                checkFirstLaunch()
             }
             .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
         }
     }
-
+    
     func requestPermission(completion: (() -> Void)?) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
             DispatchQueue.main.async {
@@ -115,7 +120,7 @@ struct ContentView: View {
             }
         }
     }
-
+    
     func scheduleNotifications(interval: Double) {
         notificationCount = 0
         let contentState = NotificationAttributes.ContentState(remainingTime: interval)
@@ -127,7 +132,7 @@ struct ContentView: View {
             content.title = "Look up"
             content.body = "Look at your child"
             content.sound = UNNotificationSound.default
-
+            
             let request = UNNotificationRequest(identifier: "Notification_\(i)", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request) { error in
                 if let error = error {
@@ -142,7 +147,7 @@ struct ContentView: View {
             updateProgress()
         }
     }
-
+    
     func startLiveActivity(interval: Double, contentState: NotificationAttributes.ContentState) {
         let attributes = NotificationAttributes(interval: Int(interval), contentState: contentState)
         
@@ -161,7 +166,7 @@ struct ContentView: View {
             print("Error starting live activity: \(error.localizedDescription)")
         }
     }
-
+    
     func stopNotifications() {
         // Stop all scheduled notifications
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
@@ -173,7 +178,7 @@ struct ContentView: View {
         notificationCount = 0
         print("All notifications stopped")
     }
-
+    
     func updateProgress() {
         guard let startTime = startTime else { return }
         let elapsedTime = Date().timeIntervalSince(startTime)
@@ -187,6 +192,14 @@ struct ContentView: View {
                 return
             }
             self.startTime = Date() // Reset the start time for the next interval
+        }
+    }
+    
+    func checkFirstLaunch() {
+        let isFirstLaunch = UserDefaults.standard.bool(forKey: "isFirstLaunch")
+        if !isFirstLaunch {
+            showOnboardingSheet = true
+            UserDefaults.standard.set(true, forKey: "isFirstLaunch")
         }
     }
 }
@@ -213,3 +226,4 @@ struct NotificationAttributes: ActivityAttributes {
         self.contentState = contentState
     }
 }
+

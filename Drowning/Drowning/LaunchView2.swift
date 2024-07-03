@@ -15,7 +15,7 @@ struct LaunchView2: View {
             
             Text("Welcome, Adult!")
                 .font(.largeTitle)
-                .foregroundColor(.black)
+                .foregroundColor(.cyan)
                 .multilineTextAlignment(.center)
                 .padding()
             
@@ -31,9 +31,15 @@ struct LaunchView2: View {
             
             Text("Embark on a journey to keep your child safe around water.")
                 .font(.title)
-                .foregroundColor(.black)
+                .foregroundColor(.cyan)
                 .multilineTextAlignment(.center)
                 .padding()
+            Text("SwimTrack functions by utilising Notifications and live activities to help you keep an eye out for your child!")
+                .font(.title2)
+                .foregroundColor(.cyan)
+                .multilineTextAlignment(.center)
+                .padding()
+
             
             Spacer()
             Spacer()
