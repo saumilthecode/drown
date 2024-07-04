@@ -39,6 +39,12 @@ struct LaunchView2: View {
                 .foregroundColor(.cyan)
                 .multilineTextAlignment(.center)
                 .padding()
+            Text("ok but whats in it for me?")
+                .font(.title2)
+                .foregroundColor(.cyan)
+                .multilineTextAlignment(.center)
+                .padding()
+            // make this into a navigation link soon!
 
             
             Spacer()

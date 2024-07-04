@@ -4,6 +4,7 @@ import ActivityKit
 
 struct ContentView: View {
     @State private var interval: Double = 10 // Default interval in seconds
+    @State private var timeSwimming: Double = 60 // Default time swimming in seconds
     @State private var isStarted: Bool = false
     @State private var permissionGranted: Bool = false // Track permission status
     @State private var liveActivity: Activity<NotificationAttributes>? = nil
@@ -47,10 +48,10 @@ struct ContentView: View {
                                 stopNotifications()
                             } else {
                                 if permissionGranted {
-                                    scheduleNotifications(interval: interval)
+                                    scheduleNotifications(interval: interval, timeSwimming: timeSwimming)
                                 } else {
                                     requestPermission {
-                                        scheduleNotifications(interval: interval)
+                                        scheduleNotifications(interval: interval, timeSwimming: timeSwimming)
                                     }
                                 }
                             }
@@ -68,6 +69,18 @@ struct ContentView: View {
                     .padding(.horizontal, 40)
                 
                 Text("\(Int(interval)) seconds")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .padding(.bottom, 10)
+                
+                Text("Set Time Swimming (seconds)")
+                    .font(.headline)
+                    .padding(.bottom, 10)
+                
+                Slider(value: $timeSwimming, in: 10...600, step: 10)
+                    .padding(.horizontal, 40)
+                
+                Text("\(Int(timeSwimming)) seconds")
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .padding(.bottom, 10)
@@ -121,12 +134,14 @@ struct ContentView: View {
         }
     }
     
-    func scheduleNotifications(interval: Double) {
+    func scheduleNotifications(interval: Double, timeSwimming: Double) {
         notificationCount = 0
         let contentState = NotificationAttributes.ContentState(remainingTime: interval)
         startLiveActivity(interval: interval, contentState: contentState)
         
-        for i in 1...10 {
+        let totalNotifications = Int(timeSwimming / interval)
+        
+        for i in 1...totalNotifications {
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval * Double(i), repeats: false)
             let content = UNMutableNotificationContent()
             content.title = "Look up"
@@ -186,7 +201,7 @@ struct ContentView: View {
         
         if progress >= 1.0 {
             notificationCount += 1
-            if notificationCount >= 10 {
+            if notificationCount >= Int(timeSwimming / interval) {
                 stopNotifications()
                 progress = 0
                 return
@@ -226,4 +241,3 @@ struct NotificationAttributes: ActivityAttributes {
         self.contentState = contentState
     }
 }
-
