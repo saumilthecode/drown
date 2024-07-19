@@ -6,42 +6,54 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct SettingsView: View {
     var body: some View {
-        VStack {
-            Spacer()
-            Divider()
-                .frame(height: 2)
-                .overlay(Color(.blue))
-            Spacer()
-            VStack(spacing: 10) {
-                SettingsButton(title: "Notifications")
-                SettingsButton(title: "Change Colour Mode")
-                SettingsButton(title: "Shortcuts")
-                SettingsButton(title: "Tutorial")
-                SettingsButton(title: "Premium")
-                SettingsButton(title: "Widgets")
-                SettingsButton(title: "Buy us a coffee")
-                SettingsButton(title: "Contact us")
+        NavigationView {
+            VStack {
+                Spacer()
+                Divider()
+                    .frame(height: 2)
+                    .overlay(Color(.blue))
+                Spacer()
+                VStack(spacing: 10) {
+                    SettingsButton(title: "Notifications", action: openNotificationSettings)
+                    SettingsButton(title: "Change Colour Mode", action: {})
+                    SettingsButton(title: "Shortcuts", action: {})
+                    SettingsButton(title: "Tutorial", action: {})
+                    SettingsButton(title: "Premium", action: {})
+                    SettingsButton(title: "Widgets", action: {})
+                    SettingsButton(title: "Buy us a coffee", action: {})
+                    SettingsButton(title: "Contact us", action: {})
+                }
+                Spacer()
+                Divider()
+                    .frame(height: 2)
+                    .overlay(Color(.blue))
+                Spacer()
             }
-            Spacer()
-            Divider()
-                .frame(height: 2)
-                .overlay(Color(.blue))
-            Spacer()
+            .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
+            .navigationBarTitle("Settings", displayMode: .inline)
         }
-        .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
-        .navigationBarTitle("Settings", displayMode: .inline)
+    }
+    
+    func openNotificationSettings() {
+        if let url = URL(string: UIApplication.openNotificationSettingsURLString) {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
     }
 }
 
 struct SettingsButton: View {
     var title: String
+    var action: () -> Void
 
     var body: some View {
         Button(action: {
-            // Handle button action
+            action()
         }) {
             Text(title)
                 .font(.title3)
@@ -61,3 +73,4 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
     }
 }
+
