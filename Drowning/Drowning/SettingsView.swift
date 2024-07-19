@@ -19,7 +19,9 @@ struct SettingsView: View {
                 Spacer()
                 VStack(spacing: 10) {
                     SettingsButton(title: "Notifications", action: openNotificationSettings)
-                    SettingsButton(title: "Change Colour Mode", action: {})
+                    NavigationLink(destination: SheetItemView()) {
+                        SettingsButton(title: "Change Colour Mode", action: {})
+                    }
                     SettingsButton(title: "Shortcuts", action: {})
                     SettingsButton(title: "Tutorial", action: {})
                     SettingsButton(title: "Premium", action: {})
@@ -73,4 +75,3 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
     }
 }
-
