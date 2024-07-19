@@ -18,6 +18,10 @@
 		D2805D122C33FCFE008A0903 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2805D112C33FCF6008A0903 /* OnboardingView.swift */; };
 		D2805D142C33FD1E008A0903 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2805D132C33FD1C008A0903 /* LaunchView.swift */; };
 		D2805D162C33FD9B008A0903 /* LaunchView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2805D152C33FD95008A0903 /* LaunchView2.swift */; };
+		D2F86B332C49F7A300A93432 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F86B312C49F7A300A93432 /* ThemeManager.swift */; };
+		D2F86B342C49F7A300A93432 /* ThemeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F86B302C49F7A300A93432 /* ThemeCollection.swift */; };
+		D2F86B352C49F7A300A93432 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F86B2F2C49F7A300A93432 /* Theme.swift */; };
+		D2F86B372C49F81100A93432 /* SheetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F86B362C49F81100A93432 /* SheetItemView.swift */; };
 		D2FE3F872C27138200227885 /* DrowningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FE3F862C27138200227885 /* DrowningApp.swift */; };
 		D2FE3F892C27138200227885 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FE3F882C27138200227885 /* ContentView.swift */; };
 		D2FE3F8B2C27138300227885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2FE3F8A2C27138300227885 /* Assets.xcassets */; };
@@ -37,6 +41,10 @@
 		D2805D112C33FCF6008A0903 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		D2805D132C33FD1C008A0903 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		D2805D152C33FD95008A0903 /* LaunchView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView2.swift; sourceTree = "<group>"; };
+		D2F86B2F2C49F7A300A93432 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		D2F86B302C49F7A300A93432 /* ThemeCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCollection.swift; sourceTree = "<group>"; };
+		D2F86B312C49F7A300A93432 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		D2F86B362C49F81100A93432 /* SheetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetItemView.swift; sourceTree = "<group>"; };
 		D2FE3F832C27138200227885 /* Drowning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drowning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2FE3F862C27138200227885 /* DrowningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrowningApp.swift; sourceTree = "<group>"; };
 		D2FE3F882C27138200227885 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +77,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D2F86B322C49F7A300A93432 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				D2F86B2F2C49F7A300A93432 /* Theme.swift */,
+				D2F86B302C49F7A300A93432 /* ThemeCollection.swift */,
+				D2F86B312C49F7A300A93432 /* ThemeManager.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		D2FE3F7A2C27138200227885 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +112,8 @@
 				D2FE3F862C27138200227885 /* DrowningApp.swift */,
 				D21F460E2C271D5E00BF37B4 /* ScheduleView.swift */,
 				D21F46102C271D6E00BF37B4 /* SettingsView.swift */,
+				D2F86B362C49F81100A93432 /* SheetItemView.swift */,
+				D2F86B322C49F7A300A93432 /* Theme */,
 				D21F460C2C271D3100BF37B4 /* MainView.swift */,
 				D2FE3F882C27138200227885 /* ContentView.swift */,
 				D2805D112C33FCF6008A0903 /* OnboardingView.swift */,
@@ -190,7 +210,11 @@
 				D21F460F2C271D6500BF37B4 /* ScheduleView.swift in Sources */,
 				D21F460D2C271D3600BF37B4 /* MainView.swift in Sources */,
 				D2FE3F872C27138200227885 /* DrowningApp.swift in Sources */,
+				D2F86B332C49F7A300A93432 /* ThemeManager.swift in Sources */,
+				D2F86B342C49F7A300A93432 /* ThemeCollection.swift in Sources */,
+				D2F86B352C49F7A300A93432 /* Theme.swift in Sources */,
 				D2805D122C33FCFE008A0903 /* OnboardingView.swift in Sources */,
+				D2F86B372C49F81100A93432 /* SheetItemView.swift in Sources */,
 				D2805D162C33FD9B008A0903 /* LaunchView2.swift in Sources */,
 				D21F46152C27258A00BF37B4 /* LiveActivityView.swift in Sources */,
 				D2805D142C33FD1E008A0903 /* LaunchView.swift in Sources */,

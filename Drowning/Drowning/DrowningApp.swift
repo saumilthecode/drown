@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct DrowningApp: App {
+    @StateObject private var themeManager = ThemeManager()
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(themeManager)
         }
     }
 }
