@@ -15,6 +15,7 @@ struct ContentView: View {
     @State private var showOnboardingSheet = false
     @State private var startTime: Date? = nil // Start time of the interval
     @State private var notificationCount: Int = 0 // Track number of notifications
+    @EnvironmentObject private var themeManager:ThemeManager
     
     var body: some View {
         NavigationView {
@@ -121,7 +122,11 @@ struct ContentView: View {
                 requestPermission(completion: nil)
                 checkFirstLaunch()
             }
-            .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
+            .background(LinearGradient(gradient: Gradient(colors: [themeManager.selectedTheme.secondaryColor.opacity(0.5), Color.white]),
+                                       startPoint: .topLeading,
+                                       endPoint: .bottomTrailing
+                                      )
+            )
         }
     }
     

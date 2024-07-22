@@ -37,3 +37,14 @@ final class RedTheme:Theme{
     
     var themeName: String = "Red Theme"
 }
+
+final class BlueTheme:Theme{
+    var primaryColor: Color = Color("4-PrimaryColor")
+    
+    var secondaryColor: Color = Color("4-SecondaryColor")
+    
+    var labelColor: Color = Color("LabelColor")
+    
+    var themeName: String = "Blue Theme"
+}
+

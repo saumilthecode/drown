@@ -4,6 +4,7 @@ import SwiftUI
 struct ScheduleView: View {
     @State private var selectedDate = Date()
     @State private var endTime = Date()
+    @EnvironmentObject private var themeManager:ThemeManager
 
     var body: some View {
         VStack {
@@ -75,6 +76,10 @@ struct ScheduleView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 20)
         }
-        .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
+        .background(LinearGradient(gradient: Gradient(colors: [themeManager.selectedTheme.secondaryColor.opacity(0.5), Color.white]),
+                                   startPoint: .topLeading,
+                                   endPoint: .bottomTrailing
+                                  )
+        )
     }
 }

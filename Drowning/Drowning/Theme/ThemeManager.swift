@@ -6,7 +6,7 @@ class ThemeManager: ObservableObject {
     
     static let shared = ThemeManager()
     
-    public var themes: [Theme] = [GreenTheme(), OrangeTheme(), RedTheme()]
+    public var themes: [Theme] = [GreenTheme(), OrangeTheme(), RedTheme(), BlueTheme()]
     
     @Published var selectedTheme: Theme
     
@@ -17,7 +17,7 @@ class ThemeManager: ObservableObject {
     
     private static var initialTheme: Theme {
         let themeSelected = UserDefaults.standard.integer(forKey: "selectedTheme")
-        let themes: [Theme] = [GreenTheme(), OrangeTheme(), RedTheme()]
+        let themes: [Theme] = [GreenTheme(), OrangeTheme(), RedTheme(), BlueTheme()]
         return themes[themeSelected]
     }
     

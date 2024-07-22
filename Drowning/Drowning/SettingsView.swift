@@ -5,10 +5,19 @@
 //  Created by Saumil Anand on 22/6/24.
 //
 
+//
+//  SettingsView.swift
+//  Drowning
+//
+//  Created by Saumil Anand on 22/6/24.
+//
+
 import SwiftUI
 import UIKit
 
 struct SettingsView: View {
+    @EnvironmentObject private var themeManager:ThemeManager
+
     var body: some View {
         NavigationView {
             VStack {
@@ -19,9 +28,19 @@ struct SettingsView: View {
                 Spacer()
                 VStack(spacing: 10) {
                     SettingsButton(title: "Notifications", action: openNotificationSettings)
+                    
                     NavigationLink(destination: SheetItemView()) {
-                        SettingsButton(title: "Change Colour Mode", action: {})
+                        Text("Change Colour Mode")
+                            .font(.title3)
+                            .fontWeight(.medium)
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue.opacity(0.2))
+                            .cornerRadius(25)
+                            .padding(.horizontal, 20)
                     }
+                    
                     SettingsButton(title: "Shortcuts", action: {})
                     SettingsButton(title: "Tutorial", action: {})
                     SettingsButton(title: "Premium", action: {})
@@ -35,7 +54,11 @@ struct SettingsView: View {
                     .overlay(Color(.blue))
                 Spacer()
             }
-            .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
+            .background(LinearGradient(gradient: Gradient(colors: [themeManager.selectedTheme.secondaryColor.opacity(0.5), Color.white]),
+                                       startPoint: .topLeading,
+                                       endPoint: .bottomTrailing
+                                      )
+            )
             .navigationBarTitle("Settings", displayMode: .inline)
         }
     }

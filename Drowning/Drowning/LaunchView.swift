@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LaunchView: View {
+    @EnvironmentObject private var themeManager:ThemeManager
+
     var body: some View {
         VStack {
             Spacer()
@@ -39,7 +41,11 @@ struct LaunchView: View {
             Spacer()
         }
         .padding()
-        .background(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
+        .background(LinearGradient(gradient: Gradient(colors: [themeManager.selectedTheme.secondaryColor.opacity(0.5), Color.white]),
+                                   startPoint: .topLeading,
+                                   endPoint: .bottomTrailing
+                                  )
+        )
         .edgesIgnoringSafeArea(.all)
     }
 }
