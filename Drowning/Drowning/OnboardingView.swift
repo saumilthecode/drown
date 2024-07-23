@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @EnvironmentObject private var themeManager: ThemeManager
+
     var body: some View {
         TabView {
             LaunchView()
                 .edgesIgnoringSafeArea(.all)
+                .environmentObject(ThemeManager())
+
             LaunchView2()
                 .edgesIgnoringSafeArea(.all)
+                .environmentObject(ThemeManager())
+        
         }
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
@@ -24,5 +30,7 @@ struct OnboardingView: View {
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingView()
+            .environmentObject(ThemeManager())
+
     }
 }
