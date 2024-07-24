@@ -22,10 +22,6 @@ struct SettingsView: View {
         NavigationView {
             VStack {
                 Spacer()
-                Divider()
-                    .frame(height: 2)
-                    .overlay(Color(.blue))
-                Spacer()
                 VStack(spacing: 10) {
                     SettingsButton(title: "Notifications", action: openNotificationSettings)
                     
@@ -42,16 +38,7 @@ struct SettingsView: View {
                     }
                     
                     SettingsButton(title: "Shortcuts", action: {})
-                    SettingsButton(title: "Tutorial", action: {})
-                    SettingsButton(title: "Premium", action: {})
-                    SettingsButton(title: "Widgets", action: {})
-                    SettingsButton(title: "Buy us a coffee", action: {})
-                    SettingsButton(title: "Contact us", action: {})
                 }
-                Spacer()
-                Divider()
-                    .frame(height: 2)
-                    .overlay(Color(.blue))
                 Spacer()
             }
             .background(LinearGradient(gradient: Gradient(colors: [themeManager.selectedTheme.secondaryColor.opacity(0.5), Color.white]),
@@ -96,5 +83,7 @@ struct SettingsButton: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .environmentObject(ThemeManager())
+
     }
 }
