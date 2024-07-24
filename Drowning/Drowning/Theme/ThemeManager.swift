@@ -12,7 +12,9 @@ class ThemeManager: ObservableObject {
     
     // Change initializer to internal or fileprivate
     init() {
-        self._selectedTheme = Published(initialValue: ThemeManager.initialTheme)
+        let initialTheme = ThemeManager.initialTheme
+        self._selectedTheme = Published(initialValue: initialTheme)
+        self.getTheme() // Ensure the selected theme is set correctly
     }
     
     private static var initialTheme: Theme {

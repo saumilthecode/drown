@@ -5,18 +5,12 @@
 //  Created by Saumil Anand on 22/6/24.
 //
 
-//
-//  SettingsView.swift
-//  Drowning
-//
-//  Created by Saumil Anand on 22/6/24.
-//
 
 import SwiftUI
 import UIKit
 
 struct SettingsView: View {
-    @EnvironmentObject private var themeManager:ThemeManager
+    @EnvironmentObject private var themeManager: ThemeManager
 
     var body: some View {
         NavigationView {
@@ -40,6 +34,7 @@ struct SettingsView: View {
                     SettingsButton(title: "Shortcuts", action: {})
                 }
                 Spacer()
+                
             }
             .background(LinearGradient(gradient: Gradient(colors: [themeManager.selectedTheme.secondaryColor.opacity(0.5), Color.white]),
                                        startPoint: .topLeading,
@@ -84,6 +79,5 @@ struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
             .environmentObject(ThemeManager())
-
     }
 }
