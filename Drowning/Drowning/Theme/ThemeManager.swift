@@ -10,7 +10,6 @@ class ThemeManager: ObservableObject {
     
     @Published var selectedTheme: Theme
     
-    // Change initializer to internal or fileprivate
     init() {
         let initialTheme = ThemeManager.initialTheme
         self._selectedTheme = Published(initialValue: initialTheme)
@@ -31,5 +30,25 @@ class ThemeManager: ObservableObject {
     
     private func getTheme() {
         self.selectedTheme = self.themes[themeSelected]
+    }
+    
+    // Helper function to determine appropriate text color
+    private func isLight(color: UIColor) -> Bool {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        
+        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        
+        // Calculate the perceived brightness of the color
+        let brightness = (red * 299 + green * 587 + blue * 114) / 1000
+        return brightness > 0.5
+    }
+    
+    // Computed property to determine appropriate text color
+    var textColor: Color {
+        let uiColor = UIColor(selectedTheme.secondaryColor)
+        return isLight(color: uiColor) ? .black : .white
     }
 }

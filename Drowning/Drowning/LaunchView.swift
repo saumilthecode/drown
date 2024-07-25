@@ -35,7 +35,7 @@ struct LaunchView: View {
                 .font(.subheadline)
                 .padding(.horizontal)
                 .multilineTextAlignment(.center)
-                .foregroundColor(.cyan)
+                .foregroundColor(.mint)
             
             Spacer()
         }
