@@ -11,32 +11,42 @@ struct LaunchView: View {
     @EnvironmentObject private var themeManager: ThemeManager
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack {
             Spacer()
-            
+
+            // Main Title
             Text("Welcome to SwimTrack")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.cyan)
-            
+                .font(.system(size: 36, weight: .bold, design: .rounded))
+                .foregroundColor(themeManager.selectedTheme.primaryColor)
+                .padding(.top, 50)
+                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
+
+            // Swimming Icon
             Image(systemName: "figure.pool.swim")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 150, height: 150)
-                .foregroundColor(.cyan)
-            
-            Text("We made this app to help protect YOUR children from ever being hurt due to distractions.")
-                .font(.subheadline)
-                .padding(.horizontal)
+                .frame(width: 180, height: 180)
+                .foregroundColor(themeManager.selectedTheme.primaryColor).opacity(0.9)
+                .padding(.vertical, 20)
+                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
+
+            // Informative Text
+            Text("""
+                SwimTrack is your ultimate companion for ensuring the safety and focus of your loved ones. Our app is designed to help protect children from potential distractions while they swim. Join us in making swimming a safer experience!
+                """)
+                .font(.system(size: 18, weight: .medium, design: .default))
+                .padding(.horizontal, 30)
                 .multilineTextAlignment(.center)
-                .foregroundColor(.cyan)
-            
+                .foregroundColor(.black) // Use dynamic text color
+
+            // Call to Action
             Text("Are you an adult? Swipe right to learn more!")
-                .font(.subheadline)
-                .padding(.horizontal)
+                .font(.system(size: 18, weight: .medium, design: .default))
+                .padding(.horizontal, 30)
                 .multilineTextAlignment(.center)
-                .foregroundColor(.mint)
-            
+                .foregroundColor(themeManager.selectedTheme.labelColor)
+                .padding(.bottom, 50)
+
             Spacer()
         }
         .padding()
