@@ -8,54 +8,55 @@
 import SwiftUI
 
 struct LaunchView: View {
+    // Access the theme manager to use theme colors
     @EnvironmentObject private var themeManager: ThemeManager
-
+    
     var body: some View {
         VStack {
-            Spacer()
-
+            Spacer() // Adds space at the top
+            
             // Main Title
             Text("Welcome to SwimTrack")
-                .font(.system(size: 36, weight: .bold, design: .rounded))
-                .foregroundColor(themeManager.selectedTheme.primaryColor)
-                .padding(.top, 50)
-                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
-
+                .font(.system(size: 36, weight: .bold, design: .rounded)) // Large, bold font with rounded design
+                .foregroundColor(themeManager.selectedTheme.primaryColor) // Dynamic color
+                .padding(.top, 50) // Top padding
+                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2) // Shadow effect
+            
             // Swimming Icon
             Image(systemName: "figure.pool.swim")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 180, height: 180)
-                .foregroundColor(themeManager.selectedTheme.primaryColor).opacity(0.9)
-                .padding(.vertical, 20)
-                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
-
+                .frame(width: 180, height: 180) // Icon size
+                .foregroundColor(themeManager.selectedTheme.primaryColor).opacity(0.9) // Dynamic color with opacity
+                .padding(.vertical, 20) // Vertical padding
+                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2) // Shadow effect
+            
             // Informative Text
             Text("""
                 SwimTrack is your ultimate companion for ensuring the safety and focus of your loved ones. Our app is designed to help protect children from potential distractions while they swim. Join us in making swimming a safer experience!
                 """)
-                .font(.system(size: 18, weight: .medium, design: .default))
-                .padding(.horizontal, 30)
-                .multilineTextAlignment(.center)
-                .foregroundColor(.black) // Use dynamic text color
-
+            .font(.system(size: 18, weight: .medium, design: .default)) // Medium weight font
+            .padding(.horizontal, 30) // Horizontal padding
+            .multilineTextAlignment(.center) // Centered text
+            .foregroundColor(.black) // Static text color (consider using dynamic color)
+            
             // Call to Action
             Text("Are you an adult? Swipe right to learn more!")
-                .font(.system(size: 18, weight: .medium, design: .default))
-                .padding(.horizontal, 30)
-                .multilineTextAlignment(.center)
-                .foregroundColor(themeManager.selectedTheme.labelColor)
-                .padding(.bottom, 50)
-
-            Spacer()
+                .font(.system(size: 18, weight: .medium, design: .default)) // Medium weight font
+                .padding(.horizontal, 30) // Horizontal padding
+                .multilineTextAlignment(.center) // Centered text
+                .foregroundColor(themeManager.selectedTheme.labelColor) // Dynamic color
+                .padding(.bottom, 50) // Bottom padding
+            
+            Spacer() // Adds space at the bottom
         }
-        .padding()
+        .padding() // Overall padding
         .background(
             LinearGradient(gradient: Gradient(colors: [themeManager.selectedTheme.secondaryColor.opacity(0.5), Color.white]),
                            startPoint: .topLeading,
-                           endPoint: .bottomTrailing)
+                           endPoint: .bottomTrailing) // Background gradient
         )
-        .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.all) // Extend background to cover safe area
     }
 }
 

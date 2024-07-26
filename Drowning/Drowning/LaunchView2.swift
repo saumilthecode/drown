@@ -10,41 +10,43 @@ import SwiftUI
 
 struct LaunchView2: View {
     @EnvironmentObject private var themeManager: ThemeManager
-
+    
     var body: some View {
-        VStack(spacing: 20) {
+        VStack {
             Spacer()
             
+            // Main Title
             Text("Welcome, Adult!")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.cyan)
-                .multilineTextAlignment(.center)
-                .padding()
+                .font(.system(size: 36, weight: .bold, design: .rounded))
+                .foregroundColor(themeManager.selectedTheme.primaryColor)
+                .padding(.top, 50)
+                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
             
+            // Water Waves Icon
             Image(systemName: "water.waves")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
-                .foregroundColor(.blue)
+                .frame(width: 180, height: 180)
+                .foregroundColor(themeManager.selectedTheme.primaryColor.opacity(0.9))
+                .padding(.vertical, 20)
+                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
             
-            Text("Embark on a journey to keep your child safe around water.")
-                .font(.title2)
-                .foregroundColor(.cyan)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
+            // Informative Text
+            Text("""
+                Embark on a journey to keep your child safe around water. SwimTrack functions by utilizing Notifications and live activities to help you keep an eye out for your child!
+                """)
+            .font(.system(size: 18, weight: .medium, design: .default))
+            .padding(.horizontal, 30)
+            .multilineTextAlignment(.center)
+            .foregroundColor(.black) // Consider using dynamic color
             
-            Text("SwimTrack functions by utilizing Notifications and live activities to help you keep an eye out for your child!")
-                .font(.title3)
-                .foregroundColor(.cyan)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-            
+            // Call to Action
             Text("What's in it for me?")
-                .font(.title3)
-                .foregroundColor(.cyan)
+                .font(.system(size: 18, weight: .medium, design: .default))
+                .padding(.horizontal, 30)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal)
+                .foregroundColor(themeManager.selectedTheme.labelColor)
+                .padding(.bottom, 50)
             
             Spacer()
         }
