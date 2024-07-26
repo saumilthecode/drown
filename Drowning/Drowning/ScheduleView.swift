@@ -9,7 +9,7 @@ struct ScheduleView: View {
     @State private var showSkillsAlert = false
     @State private var showRecordsAlert = false
     @State private var showProgressAlert = false
-    
+
     var onSchedule: ((Date, Date) -> Void)?
 
     var body: some View {
@@ -20,9 +20,15 @@ struct ScheduleView: View {
                 .ignoresSafeArea() // Apply ignoresSafeArea to the gradient
 
             ScrollView {
-                VStack {
+                Spacer()
+                VStack(spacing: 30) { // Add spacing to create breathing room
                     // Month and calendar view
                     VStack {
+                        Text("Select a Date")
+                            .font(.headline)
+                            .padding(.bottom, 5 )
+                            .padding(.top, 10 )
+
                         DatePicker(
                             "",
                             selection: $selectedDate,
@@ -30,8 +36,13 @@ struct ScheduleView: View {
                         )
                         .datePickerStyle(.graphical)
                         .labelsHidden()
-                        .padding(.vertical, 20)
-                        .frame(height: 300) // Explicit height
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color(.systemBackground))
+                                .shadow(radius: 5)
+                        )
                     }
                     .padding(.horizontal, 20)
 
@@ -48,8 +59,11 @@ struct ScheduleView: View {
                         .labelsHidden()
                         .padding(.horizontal, 15)
                         .padding(.vertical, 5)
-                        .background(Color(.systemBackground))
-                        .cornerRadius(10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color(.systemBackground))
+                                .shadow(radius: 3)
+                        )
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 20)
@@ -72,8 +86,11 @@ struct ScheduleView: View {
                         .labelsHidden()
                         .padding(.horizontal, 15)
                         .padding(.vertical, 5)
-                        .background(Color(.systemBackground))
-                        .cornerRadius(10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color(.systemBackground))
+                                .shadow(radius: 3)
+                        )
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 20)
@@ -86,7 +103,7 @@ struct ScheduleView: View {
                     Spacer()
 
                     // Buttons
-                    HStack {
+                    HStack(spacing: 15) { // Add spacing between buttons
                         Button(action: {
                             showSkillsAlert.toggle()
                         }) {
@@ -96,6 +113,7 @@ struct ScheduleView: View {
                                 .frame(maxWidth: .infinity)
                                 .background(Color(.systemGray5))
                                 .cornerRadius(10)
+                                .shadow(radius: 2)
                         }
                         .alert(isPresented: $showSkillsAlert) {
                             Alert(title: Text("Skills"), message: Text("Skills functionality coming soon!"), dismissButton: .default(Text("OK")))
@@ -110,6 +128,7 @@ struct ScheduleView: View {
                                 .frame(maxWidth: .infinity)
                                 .background(Color(.systemGray5))
                                 .cornerRadius(10)
+                                .shadow(radius: 2)
                         }
                         .alert(isPresented: $showRecordsAlert) {
                             Alert(title: Text("Records"), message: Text("Records functionality coming soon!"), dismissButton: .default(Text("OK")))
@@ -127,6 +146,7 @@ struct ScheduleView: View {
                             .frame(maxWidth: .infinity)
                             .background(Color(.systemGray5))
                             .cornerRadius(10)
+                            .shadow(radius: 2)
                     }
                     .padding(.horizontal, 20)
                     .padding(.bottom, 20)
