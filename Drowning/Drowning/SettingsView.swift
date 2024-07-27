@@ -11,7 +11,7 @@ import UIKit
 
 struct SettingsView: View {
     @EnvironmentObject private var themeManager: ThemeManager
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -57,7 +57,7 @@ struct SettingsView: View {
 struct SettingsButton: View {
     var title: String
     var action: () -> Void
-
+    
     var body: some View {
         Button(action: {
             action()

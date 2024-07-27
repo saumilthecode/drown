@@ -20,7 +20,7 @@ struct LaunchView: View {
                 .font(.system(size: 36, weight: .bold, design: .rounded)) // Large, bold font with rounded design
                 .foregroundColor(themeManager.selectedTheme.primaryColor) // Dynamic color
                 .padding(.top, 50) // Top padding
-                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2) // Shadow effect
+                .shadow(color: .blue.opacity(0.4), radius: 4, x: 0, y: 2) // Shadow effect
             
             // Swimming Icon
             Image(systemName: "figure.pool.swim")
@@ -29,7 +29,7 @@ struct LaunchView: View {
                 .frame(width: 180, height: 180) // Icon size
                 .foregroundColor(themeManager.selectedTheme.primaryColor).opacity(0.9) // Dynamic color with opacity
                 .padding(.vertical, 20) // Vertical padding
-                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2) // Shadow effect
+                .shadow(color: .blue.opacity(0.4), radius: 4, x: 0, y: 2) // Shadow effect
             
             // Informative Text
             Text("""
@@ -40,9 +40,11 @@ struct LaunchView: View {
             .multilineTextAlignment(.center) // Centered text
             .foregroundColor(.black) // Static text color (consider using dynamic color)
             
+            Spacer()
+            
             // Call to Action
             Text("Are you an adult? Swipe right to learn more!")
-                .font(.system(size: 18, weight: .medium, design: .default)) // Medium weight font
+                .font(.subheadline) // Medium weight font
                 .padding(.horizontal, 30) // Horizontal padding
                 .multilineTextAlignment(.center) // Centered text
                 .foregroundColor(themeManager.selectedTheme.labelColor) // Dynamic color

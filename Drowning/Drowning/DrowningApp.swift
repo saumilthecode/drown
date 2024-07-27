@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 @main
 struct DrowningApp: App {
@@ -14,6 +15,15 @@ struct DrowningApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(themeManager)
+        }
+    }
+    init() {
+        do {
+            // Configure and load all tips in the app.
+            try Tips.configure()
+        }
+        catch {
+            print("Error initializing tips: \(error)")
         }
     }
 }

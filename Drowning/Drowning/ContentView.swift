@@ -1,6 +1,9 @@
 import SwiftUI
 import UserNotifications
 import ActivityKit
+import TipKit
+
+
 
 struct ContentView: View {
     @State private var interval: Double = 10 // Default interval in seconds
@@ -17,13 +20,17 @@ struct ContentView: View {
     @State private var endTime: Date? = nil // End time of the interval
     @State private var notificationCount: Int = 0 // Track number of notifications
     @EnvironmentObject private var themeManager: ThemeManager
+    var favoriteLandmarkTip = FavoriteLandmarkTip()
 
     var body: some View {
         NavigationView {
+
             VStack {
                 Spacer()
 
                 ZStack {
+                    TipView(favoriteLandmarkTip, arrowEdge: .bottom)
+
                     Circle()
                         .fill(isStarted ? Color.red.opacity(0.3) : Color.green.opacity(0.3))
                         .frame(width: 200, height: 200)
@@ -143,6 +150,21 @@ struct ContentView: View {
                                        endPoint: .bottomTrailing
                                       )
             )
+            
+            .task {
+                // Configure and load your tips at app launch.
+                do {
+                    try Tips.configure([
+                        .displayFrequency(.immediate),
+                        .datastoreLocation(.applicationDefault)
+                    ])
+                }
+                catch {
+                    // Handle TipKit errors
+                    print("Error initializing TipKit \(error.localizedDescription)")
+                }
+            }
+
         }
     }
 
@@ -253,6 +275,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(ThemeManager())
     }
 }
 
@@ -270,5 +293,23 @@ struct NotificationAttributes: ActivityAttributes {
     init(interval: Int, contentState: ContentState) {
         self.interval = interval
         self.contentState = contentState
+    }
+}
+
+
+
+struct FavoriteLandmarkTip: Tip {
+    var title: Text {
+        Text("Save as a Favorite")
+    }
+
+
+    var message: Text? {
+        Text("Your favorite landmarks always appear at the top of the list.")
+    }
+
+
+    var image: Image? {
+        Image(systemName: "star")
     }
 }
