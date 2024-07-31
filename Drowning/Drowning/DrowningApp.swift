@@ -21,6 +21,7 @@ struct DrowningApp: App {
         do {
             // Configure and load all tips in the app.
             try Tips.configure()
+            print("inititalize")
         }
         catch {
             print("Error initializing tips: \(error)")
