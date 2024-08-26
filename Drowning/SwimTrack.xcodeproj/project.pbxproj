@@ -13,6 +13,7 @@
 		D21F46152C27258A00BF37B4 /* LiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21F46142C27258800BF37B4 /* LiveActivityView.swift */; };
 		D21F461C2C27277F00BF37B4 /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F46172C2725CC00BF37B4 /* ActivityKit.framework */; };
 		D248CF7D2C511060005F636F /* UICalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D248CF7C2C51105F005F636F /* UICalendarView.swift */; };
+		D24B35C32C77384D0033839B /* tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24B35C22C7738450033839B /* tips.swift */; };
 		D27120F82C27297C001A57CA /* GroupActivities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27120F72C27297C001A57CA /* GroupActivities.framework */; };
 		D27120FA2C272981001A57CA /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27120F92C272981001A57CA /* DeviceActivity.framework */; };
 		D27120FC2C2735DB001A57CA /* DynamicIslandLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27120FB2C2735DB001A57CA /* DynamicIslandLiveActivity.swift */; };
@@ -37,6 +38,7 @@
 		D21F46172C2725CC00BF37B4 /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActivityKit.framework; path = System/Library/Frameworks/ActivityKit.framework; sourceTree = SDKROOT; };
 		D21F461B2C27265900BF37B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D248CF7C2C51105F005F636F /* UICalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICalendarView.swift; sourceTree = "<group>"; };
+		D24B35C22C7738450033839B /* tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tips.swift; sourceTree = "<group>"; };
 		D27120F72C27297C001A57CA /* GroupActivities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GroupActivities.framework; path = System/Library/Frameworks/GroupActivities.framework; sourceTree = SDKROOT; };
 		D27120F92C272981001A57CA /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
 		D27120FB2C2735DB001A57CA /* DynamicIslandLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicIslandLiveActivity.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				D2F86B322C49F7A300A93432 /* Theme */,
 				D21F460C2C271D3100BF37B4 /* MainView.swift */,
 				D2FE3F882C27138200227885 /* ContentView.swift */,
+				D24B35C22C7738450033839B /* tips.swift */,
 				D2805D112C33FCF6008A0903 /* OnboardingView.swift */,
 				D2805D132C33FD1C008A0903 /* LaunchView.swift */,
 				D2805D152C33FD95008A0903 /* LaunchView2.swift */,
@@ -213,6 +216,7 @@
 				D21F460F2C271D6500BF37B4 /* ScheduleView.swift in Sources */,
 				D21F460D2C271D3600BF37B4 /* MainView.swift in Sources */,
 				D2FE3F872C27138200227885 /* DrowningApp.swift in Sources */,
+				D24B35C32C77384D0033839B /* tips.swift in Sources */,
 				D2F86B332C49F7A300A93432 /* ThemeManager.swift in Sources */,
 				D248CF7D2C511060005F636F /* UICalendarView.swift in Sources */,
 				D2F86B342C49F7A300A93432 /* ThemeCollection.swift in Sources */,

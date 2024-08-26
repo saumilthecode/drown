@@ -47,7 +47,9 @@ struct ScheduleView: View {
                     .padding(.horizontal, 20)
 
                     // Start time
-                    VStack(alignment: .leading, spacing: 10) {
+//                    VStack(alignment: .leading, spacing: 10) {
+                
+                    HStack{
                         Text("Starts")
                             .font(.headline)
 
@@ -66,7 +68,7 @@ struct ScheduleView: View {
                         )
                     }
                     .padding(.horizontal, 20)
-                    .padding(.top, 20)
+                    .padding(.top, 10)
                     .onChange(of: startTime) {
                         if startTime >= endTime {
                             endTime = Calendar.current.date(byAdding: .minute, value: 30, to: startTime) ?? endTime
@@ -74,7 +76,8 @@ struct ScheduleView: View {
                     }
 
                     // End time
-                    VStack(alignment: .leading, spacing: 10) {
+//                    VStack(alignment: .leading, spacing: 10) {
+                    HStack{
                         Text("Ends")
                             .font(.headline)
 
@@ -93,7 +96,7 @@ struct ScheduleView: View {
                         )
                     }
                     .padding(.horizontal, 20)
-                    .padding(.top, 20)
+                    .padding(.top, 10)
                     .onChange(of: endTime) {
                         if endTime <= startTime {
                             endTime = Calendar.current.date(byAdding: .minute, value: 30, to: startTime) ?? endTime
@@ -102,40 +105,6 @@ struct ScheduleView: View {
 
                     Spacer()
 
-                    // Buttons
-                    HStack(spacing: 15) { // Add spacing between buttons
-                        Button(action: {
-                            showSkillsAlert.toggle()
-                        }) {
-                            Text("Skills")
-                                .font(.headline)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color(.systemGray5))
-                                .cornerRadius(10)
-                                .shadow(radius: 2)
-                        }
-                        .alert(isPresented: $showSkillsAlert) {
-                            Alert(title: Text("Skills"), message: Text("Skills functionality coming soon!"), dismissButton: .default(Text("OK")))
-                        }
-
-                        Button(action: {
-                            showRecordsAlert.toggle()
-                        }) {
-                            Text("Records")
-                                .font(.headline)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color(.systemGray5))
-                                .cornerRadius(10)
-                                .shadow(radius: 2)
-                        }
-                        .alert(isPresented: $showRecordsAlert) {
-                            Alert(title: Text("Records"), message: Text("Records functionality coming soon!"), dismissButton: .default(Text("OK")))
-                        }
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 10)
 
                     Button(action: {
                         onSchedule?(startTime, endTime)
@@ -156,5 +125,13 @@ struct ScheduleView: View {
                 }
             }
         }
+    }
+}
+
+
+struct ScheduleView_Previews: PreviewProvider {
+    static var previews: some View {
+        ScheduleView()
+            .environmentObject(ThemeManager())
     }
 }

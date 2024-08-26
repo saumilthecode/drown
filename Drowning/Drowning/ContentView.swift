@@ -34,7 +34,6 @@ struct ContentView: View {
     @State private var endTime: Date? = nil // End time of the interval
     @State private var notificationCount: Int = 0 // Track number of notifications
     @EnvironmentObject private var themeManager: ThemeManager
-    var favoriteLandmarkTip = FavoriteLandmarkTip()
     
     var body: some View {
         NavigationView {
@@ -43,7 +42,6 @@ struct ContentView: View {
                 Spacer()
                 
                 ZStack {
-                    TipView(favoriteLandmarkTip, arrowEdge: .bottom)
                     
                     Circle()
                         .fill(isStarted ? Color.red.opacity(0.3) : Color.green.opacity(0.3))
@@ -290,26 +288,6 @@ struct NotificationAttributes: ActivityAttributes {
         var remainingTime: Double
     }
 }
-
-
-// Onboarding View
-
-
-// Favorite Landmark Tip
-struct FavoriteLandmarkTip: Tip {
-    var title: Text {
-        Text("Landmark Tip")
-    }
-    
-    var message: Text {
-        Text("Here's a tip about your favorite landmark!")
-    }
-    
-    var symbol: Image {
-        Image(systemName: "star.fill")
-    }
-}
-
 
 #Preview {
     ContentView()

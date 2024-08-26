@@ -17,7 +17,8 @@ struct LaunchView: View {
             
             // Main Title
             Text("Welcome to SwimTrack")
-                .font(.system(size: 36, weight: .bold, design: .rounded)) // Large, bold font with rounded design
+                .font(.largeTitle)
+                .fontWeight(.thin)
                 .foregroundColor(themeManager.selectedTheme.primaryColor) // Dynamic color
                 .padding(.top, 50) // Top padding
                 .shadow(color: .blue.opacity(0.4), radius: 4, x: 0, y: 2) // Shadow effect

@@ -16,7 +16,8 @@ struct LaunchView2: View {
             
             // Main Title
             Text("Welcome, Adult!")
-                .font(.system(size: 36, weight: .bold, design: .rounded))
+                .font(.largeTitle)
+                .fontWeight(.thin)
                 .foregroundColor(themeManager.selectedTheme.primaryColor)
                 .padding(.top, 50)
                 .shadow(color: .blue.opacity(0.3), radius: 4, x: 0, y: 2)
